@@ -1,4 +1,5 @@
 from flask import Flask, request, Response, json
+from flask_cors import CORS
 from flask_mongoengine import MongoEngine
 
 from models import User
@@ -10,8 +11,10 @@ app.config["MONGODB_HOST"] = "127.0.0.1"
 app.config["MONGODB_PORT"] = 27017
 app.config["MONGODB_CONNECT"] = False
 
+cors = CORS()
 db = MongoEngine()
 db.init_app(app)
+cors.init_app(app)
 
 
 @app.route('/')
@@ -40,7 +43,7 @@ def auth():
 
 
 @app.route('/sign-up', methods=['POST'])
-def auth():
+def sign_up():
     email = request.json.get('email')
 
     if not email:

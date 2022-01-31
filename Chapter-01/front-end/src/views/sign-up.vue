@@ -81,6 +81,7 @@
 
 <script>
 import validation_mixins from "../mixins/validations";
+import axios from "axios";
 
 export default {
   name: "sign-up",
@@ -105,14 +106,26 @@ export default {
     }
   },
   methods: {
-    signUpWithEmail() {
+    async signUpWithEmail() {
       this.$refs.form.validate();
 
       if (this.valid) {
-        console.log({
-          email: this.email,
-          password: this.password
-        });
+        this.loading = true;
+        try {
+          const {data: result} = await axios.post('http://localhost:5000/sign-up', {
+            email: this.email,
+            password: this.password
+          });
+
+          console.log(result);
+          await this.$router.push('/home');
+        } catch (e) {
+          // TODO - Show Error
+          console.log(e);
+        } finally {
+          this.loading = false;
+        }
+
       }
     }
   }
