@@ -6,6 +6,7 @@
 ### Setup project
 - Clone the repo `git clone https://github.com/wizlif/WebSec-Classes`
 - Create a web hosting directory `/var/www/react`
+- Copy the [index.html](index.html) to `/var/www/react`
 - Copy [myreact.01.conf](myreact.01.conf) to `/etc/nginx/sites-available`
 - Rename it to `myreact.conf`
 - Enable the web configuration by creating a link in `sites-enabled` using `ln -s /etc/nginx/sites-available/myreact.conf /etc/nginx/sites-enabled/myreact.conf`
