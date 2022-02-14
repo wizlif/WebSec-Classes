@@ -112,7 +112,7 @@ export default {
       if (this.valid) {
         this.loading = true;
         try {
-          const {data: result} = await axios.post('http://localhost:5000/sign-up', {
+          const {data: result} = await axios.post('https://3179-154-230-147-236.ngrok.io/sign-up', {
             email: this.email,
             password: this.password
           });

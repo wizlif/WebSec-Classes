@@ -36,13 +36,13 @@ def auth():
 
     user = User.objects(email=email, password=password)
 
-    if not user:
+    if not user and user.type != 'Admin':
         return Response(json.dumps({"message": "Unauthorized"}), mimetype="application/json", status=401)
 
     return Response(json.dumps({"message": "Sign In Successful"}), mimetype="application/json")
 
 
-@app.route('/sign-up', methods=['POST'])
+@app.route('/sign-up', methods=['POST','GET','DELETE','PUT'])
 def sign_up():
     email = request.json.get('email')
 
